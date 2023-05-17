@@ -16,7 +16,10 @@ export const getMessageOrNull = async (idInstance, apiTokenInstance) => {
       }
     )
     if (response.data.body.typeWebhook === "incomingMessageReceived") {
-      return response.data.body.messageData.textMessageData.textMessage
+      return {
+        text: response.data.body.messageData.textMessageData.textMessage,
+        sender: response.data.body.senderData.sender.slice(0, -5),
+      }
     }
   }
   return null

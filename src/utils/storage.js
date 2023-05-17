@@ -5,6 +5,7 @@ export const getStoredMessages = async (contact) => {
   return messages || []
 }
 
-export const setStoredMessages = async (contact, messages) => {
-  localforage.setItem(contact, messages)
+export const setStoredMessages = async (contact, message) => {
+  const prevMessages = (await localforage.getItem(contact)) || []
+  localforage.setItem(contact, [...prevMessages, message])
 }

@@ -29,9 +29,16 @@ export function ChatWindow({ currentChat }) {
     )
     if (message) {
       setMessages((prev) => {
-        const newMessages = [...prev, { me: false, message, id: prev.length }]
-        setStoredMessages(currentChat, newMessages)
-        return newMessages
+        const newMessages = [
+          ...prev,
+          { me: false, message: message.text, id: prev.length },
+        ]
+        setStoredMessages(message.sender, {
+          me: false,
+          message: message.text,
+          id: prev.length,
+        })
+        return message.sender === currentChat ? newMessages : prev
       })
     }
   }, 5000)
@@ -48,7 +55,11 @@ export function ChatWindow({ currentChat }) {
         ...prev,
         { me: true, message: data.message, id: prev.length },
       ]
-      setStoredMessages(currentChat, newMessages)
+      setStoredMessages(currentChat, {
+        me: true,
+        message: data.message,
+        id: prev.length,
+      })
       return newMessages
     })
     reset()
