@@ -8,7 +8,9 @@ export function ContactList({ currentChat, onSelection }) {
   const [contacts, setContacts] = useState([])
 
   const onSubmit = (data) => {
-    setContacts((prev) => [...prev, data.contact])
+    if (contacts.indexOf(data.contact) === -1) {
+      setContacts((prev) => [...prev, data.contact])
+    }
     onSelection(data.contact)()
     reset()
   }
@@ -17,8 +19,14 @@ export function ContactList({ currentChat, onSelection }) {
     <div className='contact-list'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          {...register("contact", { required: true })}
+          {...register("contact", {
+            required: true,
+            minLength: 11,
+            maxLength: 12,
+          })}
           placeholder='Введите номер для создания нового чата'
+          autoComplete='off'
+          title='Номер без специальных знаков в международном формате. Длина - 11-12 цифр'
         />
         <button>+</button>
       </form>
