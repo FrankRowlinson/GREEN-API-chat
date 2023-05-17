@@ -27,19 +27,18 @@ export function ChatWindow({ currentChat }) {
       instance.idInstance,
       instance.apiTokenInstance
     )
+
     if (message) {
-      setMessages((prev) => {
-        const newMessages = [
+      setStoredMessages(message.sender, {
+        me: false,
+        message: message.text,
+      })
+      if (message.sender === currentChat) {
+        setMessages((prev) => [
           ...prev,
           { me: false, message: message.text, id: prev.length },
-        ]
-        setStoredMessages(message.sender, {
-          me: false,
-          message: message.text,
-          id: prev.length,
-        })
-        return message.sender === currentChat ? newMessages : prev
-      })
+        ])
+      }
     }
   }, 5000)
 
@@ -50,18 +49,16 @@ export function ChatWindow({ currentChat }) {
       currentChat,
       data.message
     )
-    setMessages((prev) => {
-      const newMessages = [
-        ...prev,
-        { me: true, message: data.message, id: prev.length },
-      ]
-      setStoredMessages(currentChat, {
-        me: true,
-        message: data.message,
-        id: prev.length,
-      })
-      return newMessages
+
+    setStoredMessages(currentChat, {
+      me: true,
+      message: data.message,
     })
+
+    setMessages((prev) => [
+      ...prev,
+      { me: true, message: data.message, id: prev.length },
+    ])
     reset()
   }
 
