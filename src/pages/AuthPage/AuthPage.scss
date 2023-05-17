@@ -1,0 +1,29 @@
+@use "../../utils/styles/colors";
+@use "../../utils/styles/mixins";
+
+.form-container {
+  background: colors.$ui-bg;
+  padding: 16px 20px;
+
+  input {
+    @include mixins.input;
+    margin-top: 4px;
+  }
+
+  label {
+    @include mixins.label;
+    margin-top: 12px;
+    display: block;
+  }
+
+  a {
+    color: colors.$secondary-font;
+    font-size: 12px;
+  }
+
+  button {
+    @include mixins.button;
+    display: block;
+    margin-top: 12px;
+  }
+}

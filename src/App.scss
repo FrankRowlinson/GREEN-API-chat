@@ -1,0 +1,14 @@
+@use "./utils/styles/colors";
+
+.App {
+  height: 100vh;
+  width: 100hw;
+
+  padding: 16px;
+
+  background: colors.$bg;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

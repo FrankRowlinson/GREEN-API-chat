@@ -1,0 +1,50 @@
+@use "../../utils/styles/colors";
+
+@mixin input {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 12px;
+  min-width: 320px;
+  display: block;
+
+  background: colors.$input-bg;
+  color: colors.$primary-font;
+
+  ::placeholder {
+    color: colors.$secondary-font;
+  }
+}
+
+@mixin label {
+  color: colors.$primary-font;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+@mixin button {
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: colors.$primary-font;
+  background: darken($color: colors.$ui-success, $amount: 10);
+
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    background: colors.$ui-success;
+  }
+}
+
+@mixin empty-list {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 100px;
+  color: colors.$secondary-font;
+}
