@@ -1,4 +1,5 @@
 # GREEN-API-chat
+Приложение-интерфейс для API сервиса GREEN API
 
 ## Локальный запуск
 1. В нужной директории в консоли выполнить `git clone https://github.com/FrankRowlinson/GREEN-API-chat.git`;
